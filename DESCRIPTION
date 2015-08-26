@@ -1,0 +1,19 @@
+Package: OptiQuantR
+Type: Package
+Title: Simplifies and automates analising and reporting OptiQuant's log data
+Version: 0.0.1
+Date: 2015-08-24
+Authors@R: person("Joao", "Pinelo Silva", email = "j.pinelo@mac.com",
+                  role = c("aut", "cre"))
+Description: Greatly simplifies the process to read, analise and report log data
+    collated by OptiQuant (optiquant.opti55.com) in R. It automates efficient
+    import of databases while preparing them for analysis and for semi-automated
+    reporting.
+Depends: R (>= 3.2.2)
+Imports:
+    data.table (>= 1.9.4),
+    lubridate (>= 1.3.3)
+License: GPL-3
+LazyData: TRUE
+Suggests: testthat
+Encoding: UTF-8
