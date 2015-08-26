@@ -35,14 +35,12 @@
 #' "session_finished", "session_total_counted", "gate_id", "person_kind", "id",
 #' "year", "month", "day", "weekday", "hour", "week", "min_start_off",
 #' "session_length", "timeStamp"
-#'
 #'@export
 readoqcsv <- function(x) {
 # Load data --------------------------------------------------------------------
   # colclasses and comment.char improve speed.
   # date cols as character for coercion as posix date
-
-    dataImport <- utils::read.table(file = x,
+      dataImport <- utils::read.table(file = x,
                                     header = TRUE,
                                     sep = "," ,
                                     dec = "." ,
@@ -72,44 +70,44 @@ readoqcsv <- function(x) {
   data.table::setnames(dataImport, "count_datetime", "timeStampO")
 
   # POSIXlt is needed for analysis stage
-  dataImport$timeStampO <- strptime(dataImport$timeStampO,
+  dataImport$timeStampO <- base::strptime(dataImport$timeStampO,
                                     "%m/%d/%y  %H:%M")
 
-  dataImport$session_started <- strptime(dataImport$session_started,
+  dataImport$session_started <- base::strptime(dataImport$session_started,
                                          "%m/%d/%y  %H:%M")
 
-  dataImport$session_finished <- strptime(dataImport$session_finished,
+  dataImport$session_finished <- base::strptime(dataImport$session_finished,
                                           "%m/%d/%y  %H:%M")
 
   # Create id for each event for analysis stage
-  dataImport$id <- c(1:nrow(dataImport))
+  dataImport$id <- c(1:base::nrow(dataImport))
 
   # copy data to coerce dates to POSIXct
   dataImportCt <- dataImport
 
   # coerce all time cols to POSIXct
-  dataImportCt$timeStampO <- as.POSIXct(dataImport$timeStampO,
+  dataImportCt$timeStampO <- base::as.POSIXct(dataImport$timeStampO,
                                         format = "%m/%d/%y  %H:%M")
 
-  dataImportCt$session_started <- as.POSIXct(dataImport$session_started,
+  dataImportCt$session_started <- base::as.POSIXct(dataImport$session_started,
                                              format = "%m/%d/%y  %H:%M")
 
-  dataImportCt$session_finished <- as.POSIXct(dataImport$session_finished,
+  dataImportCt$session_finished <- base::as.POSIXct(dataImport$session_finished,
                                               format = "%m/%d/%y  %H:%M")
 
   # extract date time elements for easier use
-  dataImportCt$year <- as.integer(lubridate::year(dataImportCt$timeStampO))
+  dataImportCt$year <- base::as.integer(lubridate::year(dataImportCt$timeStampO))
 
-  dataImportCt$month <- as.integer(lubridate::month(dataImportCt$timeStamp))
+  dataImportCt$month <- base::as.integer(lubridate::month(dataImportCt$timeStamp))
 
-  dataImportCt$day <- as.integer(lubridate::day(dataImportCt$timeStamp))
+  dataImportCt$day <- base::as.integer(lubridate::day(dataImportCt$timeStamp))
 
-  dataImportCt$weekday <- as.factor(weekdays(dataImportCt$timeStampO,
+  dataImportCt$weekday <- base::as.factor(weekdays(dataImportCt$timeStampO,
                                                         abbreviate = TRUE))
 
-  dataImportCt$hour <- as.integer(lubridate::hour(dataImportCt$timeStampO))
+  dataImportCt$hour <- base::as.integer(lubridate::hour(dataImportCt$timeStampO))
 
-  dataImportCt$week <- as.integer(lubridate::week(dataImportCt$timeStampO))
+  dataImportCt$week <- base::as.integer(lubridate::week(dataImportCt$timeStampO))
 
   # extract mins from session_started to identify sessions
   # which started off late or early
@@ -118,15 +116,15 @@ readoqcsv <- function(x) {
   dataImportCt$min_start_off <- lubridate::minute(dataImportCt$session_started)
 
   # create col session_length = session_finished - session_started
-   dataImport$session_length <- with(dataImport,
-                                     difftime(session_finished,
-                                              session_started,
-                                              unit = "mins"))
+   dataImport$session_length <- base::with(dataImport,
+                                          base::difftime(session_finished,
+                                                         session_started,
+                                                         unit = "mins"))
 
-  dataImportCt$session_length <- with(dataImportCt,
-                                      difftime(session_finished,
-                                               session_started,
-                                               unit = "mins"))
+  dataImportCt$session_length <- base::with(dataImportCt,
+                                            base::difftime(session_finished,
+                                                           session_started,
+                                                           unit = "mins"))
   data.table::setDT(dataImportCt)
   data.table::setkey(dataImportCt,
                      session_id,
@@ -142,5 +140,5 @@ readoqcsv <- function(x) {
     # Keep dataImport and dataImportCt for further use in later releases
   events <- dataImportCt
 # Dataset to be used by user ---------------------------------------------------
-  return(events)
+  base::return(events)
 }
