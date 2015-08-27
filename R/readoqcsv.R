@@ -65,7 +65,6 @@ readoqcsv <- function(x) {
                                                      "NULL"),
                                       comment.char = "")
   data.table::setDT(dataImport)
-
 # Prepare data -----------------------------------------------------------------
   # Rename col count_datetime to time_stampO to save name time)tamp for analysis
   data.table::setnames(dataImport, "count_datetime", "timeStampO")
@@ -82,7 +81,7 @@ readoqcsv <- function(x) {
 
   # Create id for each event for analysis stage
   dataImport$id <- c(1:nrow(dataImport))
-#  data.table::setkey(dataImport, id)
+  # data.table::setkey(dataImport, id)
 
   # copy data to coerce dates to POSIXct
   dataImportCt <- dataImport
