@@ -1,4 +1,4 @@
-#'Read OptiQuant's Exported .csv File.
+#'Read OptiQuant's exported .csv file.
 #'
 #'\code{readoqcsv} returns a keyed data.table and data.frame ready for fast and
 #'easy analysis and reporting.
@@ -40,30 +40,30 @@ readoqcsv <- function(x) {
 # Load data --------------------------------------------------------------------
   # colclasses and comment.char improve speed.
   # date cols as character for coercion as posix date
-      dataImport <- read.table(file = x,
-                              header = TRUE,
-                              sep = "," ,
-                              dec = "." ,
-                              colClasses = c("character",
-                                             "integer",
-                                             "character",
-                                             "character",
-                                             "integer",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL",
-                                             "integer",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL",
-                                             "factor",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL",
-                                             "NULL"),
-                              comment.char = "")
+      dataImport <- utils::read.table(file = x,
+                                      header = TRUE,
+                                      sep = "," ,
+                                      dec = "." ,
+                                      colClasses = c("character",
+                                                     "integer",
+                                                     "character",
+                                                     "character",
+                                                     "integer",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "integer",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "factor",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL",
+                                                     "NULL"),
+                                      comment.char = "")
   data.table::setDT(dataImport)
 
 # Prepare data -----------------------------------------------------------------
