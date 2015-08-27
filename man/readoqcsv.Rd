@@ -2,7 +2,7 @@
 % Please edit documentation in R/readoqcsv.R
 \name{readoqcsv}
 \alias{readoqcsv}
-\title{Read OptiQuant's exported .csv file.}
+\title{Read OptiQuant's Exported .csv File.}
 \usage{
 readoqcsv(x)
 }
