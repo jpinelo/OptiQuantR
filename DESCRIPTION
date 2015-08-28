@@ -1,7 +1,7 @@
 Package: OptiQuantR
 Type: Package
 Title: Simplifies and Automates Analyzing and Reporting OptiQuant's log Data
-Version: 0.0.1
+Version: 0.0.1-9000
 Date: 2015-08-24
 Authors@R: person("Joao", "Pinelo Silva", email = "j.pinelo@mac.com",
                   role = c("aut", "cre"))
