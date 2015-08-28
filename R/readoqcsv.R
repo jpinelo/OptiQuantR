@@ -81,7 +81,8 @@ readoqcsv <- function(x) {
 
   # Create id for each event for analysis stage
   dataImport$id <- c(1:nrow(dataImport))
-  data.table::setkeyv(dataImport, cols = "id")
+
+  # data.table::setkeyv(dataImport, cols = "id")
 
   # copy data to coerce dates to POSIXct
   dataImportCt <- dataImport
