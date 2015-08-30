@@ -25,9 +25,7 @@
 #'
 #'@import
 excludegates <- function(x, gates) {
-  result <- dplyr::filter(x, gate_id != gates)
-  removed <- nrow(x) - nrow(result)
-  statement <- paste(removed, "row(s) removed from object", sep = " ")
-  print(statement)
+  result <- dplyr::filter(x, !gate_id %in% gates)
+
   return(result)
 }
