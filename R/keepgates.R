@@ -27,8 +27,6 @@
 #'@import
 keepgates <- function(x, gates) {
   result <- dplyr::filter(x, gate_id %in% gates)
-  removed <- nrow(x) - nrow(result)
-  statement <- paste(removed, "row(s) removed from object", sep = " ")
-  print(statement)
+
   return(result)
 }
